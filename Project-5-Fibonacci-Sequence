@@ -1,0 +1,100 @@
+# Function to generate the Fibonacci sequence up to a given number of terms
+def fibonacci(n):
+    """
+    This function generates the Fibonacci sequence up to a specified number of terms (n).
+
+    Args:
+        n: The number of terms to generate in the Fibonacci sequence (positive integer).
+
+    Returns:
+        A list containing the Fibonacci sequence up to n terms.
+    """
+    
+    # Initialize the first two Fibonacci numbers (0 and 1)
+    a, b = 0, 1
+    
+    # Create an empty list to store the sequence
+    fibonacci_sequence = []
+    
+    # Iterate through n terms
+    for i in range(n):
+        # Append the current Fibonacci number to the sequence list
+        fibonacci_sequence.append(a)
+        
+        # Calculate the next Fibonacci number by adding the previous two
+        c = a + b
+        
+        # Update a and b for the next iteration
+        a = b
+        b = c
+
+    # Return the generated Fibonacci sequence
+    return fibonacci_sequence
+
+# Example usage
+number_of_terms = 10
+fibonacci_numbers = fibonacci(number_of_terms)
+
+# Print the Fibonacci sequence
+print(f"The first {number_of_terms} Fibonacci numbers are: {fibonacci_numbers}") 
+
+# BEGIN ADDITIONAL COMMENTS
+
+# Function to generate the Fibonacci sequence up to a given number of terms
+def fibonacci(n):
+    """
+    This function generates the Fibonacci sequence up to a specified number of terms (n).
+    
+    The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones,
+    usually starting with 0 and 1. That is, the sequence starts 0, 1, 1, 2, 3, 5, 8, 13, 21, and so on.
+
+    Args:
+        n: The number of terms to generate in the Fibonacci sequence (positive integer).
+
+    Returns:
+        A list containing the Fibonacci sequence up to n terms.
+    """
+
+    # Initialize the first two Fibonacci numbers (0 and 1)
+    # 'a' is the current Fibonacci number, starting with 0
+    # 'b' is the next Fibonacci number, starting with 1
+    a, b = 0, 1
+
+    # Create an empty list to store the sequence
+    # This list will eventually contain all Fibonacci numbers up to 'n' terms
+    fibonacci_sequence = []
+
+    # Iterate through n terms
+    # 'for i in range(n)' means the loop will run 'n' times
+    for i in range(n):
+        # Append the current Fibonacci number to the sequence list
+        # 'a' is the current Fibonacci number which is added to the list
+        fibonacci_sequence.append(a)
+
+        # Calculate the next Fibonacci number by adding the previous two
+        # 'c' will be the sum of 'a' and 'b', which are the last two Fibonacci numbers
+        c = a + b
+
+        # Update 'a' and 'b' for the next iteration
+        # 'a' now becomes 'b', the next number in the sequence
+        # 'b' now becomes 'c', the newly calculated next number
+        a = b
+        b = c
+
+    # Return the generated Fibonacci sequence
+    # The list 'fibonacci_sequence' now contains 'n' Fibonacci numbers
+    return fibonacci_sequence
+
+# Example usage
+# Define the number of terms in the Fibonacci sequence to generate
+number_of_terms = 10
+
+# Call the function 'fibonacci' with 'number_of_terms' as the argument
+# This will generate a list of the first 10 Fibonacci numbers
+fibonacci_numbers = fibonacci(number_of_terms)
+
+# Print the Fibonacci sequence
+# This prints the list of the first 10 Fibonacci numbers in a readable format
+print(f"The first {number_of_terms} Fibonacci numbers are: {fibonacci_numbers}")
+
+# END OF ADDITIONAL COMMENTS
