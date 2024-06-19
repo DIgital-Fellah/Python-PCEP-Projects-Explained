@@ -1,0 +1,33 @@
+import random  # Import the random module to generate random numbers
+
+def roll_dice(num_dice=1, num_sides=6):
+    """
+    Simulates the rolling of dice.
+
+    Args:
+        num_dice: The number of dice to roll (default: 1).
+        num_sides: The number of sides on each die (default: 6).
+
+    Returns:
+        A list of the results of each die roll.
+    """
+
+    # Initialize an empty list to store the results of each die roll
+    rolls = []
+
+    # Loop through the range of num_dice, which means we roll the die num_dice times
+    for _ in range(num_dice):
+        # Generate a random number between 1 and num_sides (inclusive)
+        # This simulates rolling a die with num_sides sides
+        roll = random.randint(1, num_sides)
+        
+        # Append the result of the roll to the rolls list
+        rolls.append(roll)
+    
+    # Return the list containing all the results of the rolls
+    return rolls
+
+# Example usage:
+# Simulate rolling 2 six-sided dice
+dice_rolls = roll_dice(2, 6)
+print(f"You rolled {dice_rolls}")  # Print the results of the dice rolls
