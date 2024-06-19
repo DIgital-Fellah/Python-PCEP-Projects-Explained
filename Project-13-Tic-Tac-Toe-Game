@@ -1,0 +1,112 @@
+# Tic-Tac-Toe Game in Python
+
+# Define an empty board as a list of lists
+# This initializes a 3x3 grid with spaces (" ") indicating empty cells
+board = [[" " for _ in range(3)] for _ in range(3)]
+
+# Function to display the current board state
+def display_board(board):
+  # Loop through each row in the board
+  for row in board:
+    print("|", end="")  # Print the left boundary of the board
+    # Loop through each cell in the row
+    for cell in row:
+      # Print the cell value (X, O, or empty) followed by a vertical separator
+      print(f" {cell} |", end="")
+    print()  # Move to the next line after each row
+
+# Function to check if a player has won
+def check_win(board, player):
+  # Check if any row has all cells equal to the player
+  for row in board:
+    if all(cell == player for cell in row):
+      return True
+  
+  # Check if any column has all cells equal to the player
+  for col in range(3):
+    if all(board[row][col] == player for row in range(3)):
+      return True
+  
+  # Check if either diagonal has all cells equal to the player
+  if all(board[i][i] == player for i in range(3)) or \
+     all(board[i][2-i] == player for i in range(3)):
+    return True
+  
+  # If no win conditions are met, return False
+  return False
+
+# Function to check if the board is full (no empty spaces)
+def is_board_full(board):
+  # Check if every cell in the board is not empty
+  return all(cell != " " for row in board for cell in row)
+
+# Function to get a valid player move (row, column)
+def get_player_move(board):
+  while True:  # Infinite loop to keep asking until a valid move is made
+    try:
+      # Prompt player for row and column input
+      row = int(input("Enter row number (1-3): ")) - 1
+      col = int(input("Enter column number (1-3): ")) - 1
+      # Check if input is within valid range and the cell is empty
+      if 0 <= row <= 2 and 0 <= col <= 2 and board[row][col] == " ":
+        return row, col  # Return valid move
+      else:
+        print("Invalid move. Try again.")  # Prompt again for invalid move
+    except ValueError:
+      print("Invalid input. Please enter numbers only.")  # Handle non-integer input
+
+# Function to place a move on the board for a player
+def place_move(board, player, row, col):
+  # Set the specified cell to the player's symbol (X or O)
+  board[row][col] = player
+
+# Function to check if the game is a tie (board is full and no winner)
+def is_tie(board):
+  # Check if the board is full and neither player has won
+  return is_board_full(board) and not any(check_win(board, player) for player in ["X", "O"])
+
+# Function to switch players
+def switch_player(player):
+  # Return the opposite player
+  return "O" if player == "X" else "X"
+
+# Main game loop
+def main():
+  # Choose game mode (Player vs Player or Player vs Computer)
+  game_mode = input("Choose game mode (1 - Player vs Player, 2 - Player vs Computer): ")
+  if game_mode not in ["1", "2"]:
+    print("Invalid mode. Exiting...")  # Exit if invalid mode is chosen
+    return
+
+  # Choose starting player (X or O)
+  player = "X" if input("Choose starting player (X/O): ").upper() == "X" else "O"
+  
+  # Game loop
+  while True:
+    display_board(board)  # Display the current state of the board
+
+    # Get player move
+    if game_mode == "1":
+      row, col = get_player_move(board)  # Player vs Player mode
+    else:
+      # Simple AI for computer (always places O in the center if available)
+      row, col = (1, 1) if board[1][1] == " " else get_player_move(board)
+
+    # Place the move
+    place_move(board, player, row, col)
+
+    # Check for win or tie
+    if check_win(board, player):
+      display_board(board)  # Display final board state
+      print(f"Player {player} wins!")  # Announce winner
+      break
+    elif is_tie(board):
+      display_board(board)  # Display final board state
+      print("It's a tie!")  # Announce tie
+      break
+
+    # Switch player for next turn
+    player = switch_player(player)
+
+if __name__ == "__main__":
+  main()  # Start the game
