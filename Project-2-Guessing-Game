@@ -1,0 +1,52 @@
+# Import the random module to generate random numbers
+import random
+
+# Set the minimum and maximum values for the guessing range
+min_value = 1
+max_value = 100
+
+# Generate a random number within the specified range
+# This number will be the "secret" number that the user needs to guess
+secret_number = random.randint(min_value, max_value)
+
+# Flag to track if the user guessed correctly
+# This variable will be used to keep the game running until the correct guess is made
+guessed_correct = False
+
+# Main loop for the guessing game
+# The game will continue to prompt the user for guesses until the correct number is guessed
+while not guessed_correct:
+    # Get the user's guess and convert it to an integer
+    # The input() function takes input from the user and int() converts it to an integer
+    try:
+        guess = int(input(f"Guess a number between {min_value} and {max_value}: "))
+    except ValueError:
+        # If the user enters something that isn't an integer, an error message is shown
+        print("Invalid input. Please enter an integer.")
+        # Continue with the next iteration of the loop, asking for input again
+        continue
+
+    # Check if the guess is within the valid range
+    # This ensures the guess is between the minimum and maximum values
+    if guess < min_value or guess > max_value:
+        # If the guess is out of range, inform the user and continue with the next loop iteration
+        print(f"Guess out of range. Please enter a number between {min_value} and {max_value}.")
+        continue
+
+    # Check if the guess is correct
+    # Compare the guessed number with the secret number
+    if guess == secret_number:
+        # If the guess is correct, set the flag to True to exit the loop
+        guessed_correct = True
+        # Inform the user that they guessed correctly
+        print("Congratulations! You guessed the number!")
+    elif guess < secret_number:
+        # If the guess is less than the secret number, inform the user that their guess is too low
+        print("Your guess is too low. Try again!")
+    else:
+        # If the guess is greater than the secret number, inform the user that their guess is too high
+        print("Your guess is too high. Try again!")
+
+# End of game message
+# Once the correct number is guessed, the secret number is revealed (though the user already knows it)
+print(f"The secret number was: {secret_number}") 
