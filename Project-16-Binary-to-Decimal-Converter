@@ -1,0 +1,51 @@
+def binary_to_decimal(binary_string):
+  """
+  This function converts a binary string to its decimal equivalent.
+
+  Args:
+      binary_string: A string containing the binary number.
+
+  Returns:
+      The decimal equivalent of the binary number.
+  """
+
+  # Initialize the decimal equivalent to 0.
+  # This will store the final converted decimal value.
+  decimal_equivalent = 0
+  
+  # Get the length of the binary string.
+  # This will help in determining the position of each digit in the binary number.
+  binary_length = len(binary_string)
+
+  # Loop through each digit of the binary string from left to right.
+  # We use a loop to process each digit of the binary string one by one.
+  for i in range(binary_length):
+    # Get the current digit as an integer (0 or 1).
+    # We convert the character at position 'i' to an integer.
+    digit = int(binary_string[i])
+
+    # Check if the current digit is invalid (not 0 or 1).
+    # Binary numbers can only contain 0s and 1s. Raise an error if an invalid digit is found.
+    if digit not in (0, 1):
+      raise ValueError("Invalid binary string. Only 0s and 1s allowed.")
+
+    # Add the current digit's contribution to the decimal equivalent.
+    # Each binary digit contributes to the decimal value. The position of the digit determines its value.
+    # The contribution is calculated by multiplying the digit by 2 raised to the power of its position.
+    # The position is determined by (binary_length - 1 - i), where 'i' is the current index.
+    decimal_equivalent += digit * (2 ** (binary_length - 1 - i))
+
+  # Return the decimal equivalent of the binary number.
+  # After processing all digits, return the calculated decimal value.
+  return decimal_equivalent
+
+# Example usage
+# Define a binary string to be converted.
+binary_string = "1011"
+
+# Call the function to convert the binary string to its decimal equivalent.
+decimal_equivalent = binary_to_decimal(binary_string)
+
+# Print the result.
+# This will output: 1011 (binary) = 11 (decimal)
+print(f"{binary_string} (binary) = {decimal_equivalent} (decimal)") 
