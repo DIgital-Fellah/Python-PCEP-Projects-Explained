@@ -12,38 +12,45 @@ def convert_temperature(value, from_unit, to_unit):
       The converted temperature value (float).
   """
 
-  # Conversion factors and formulas
+  # Dictionary to store conversion factors and formulas for different units
   conversion_factors = {
       "C": {"F": 9/5, "K": 1},
       "F": {"C": 5/9, "K": (5/9) + 32},
       "K": {"C": -273.15, "F": -273.15 * (9/5) + 32}
   }
 
-  # Error handling for invalid units
+  # Error handling: Check if the provided units are valid
   if from_unit not in conversion_factors or to_unit not in conversion_factors[from_unit]:
     raise ValueError("Invalid temperature unit(s). Please use 'C', 'F', or 'K'.")
 
-  # Perform conversion based on user input
+  # Calculate the converted value based on the conversion factors
   converted_value = value * conversion_factors[from_unit][to_unit]
 
-  # Add or subtract the base value for Kelvin conversions
+  # Special handling for conversions involving Kelvin
   if to_unit == "K" or from_unit == "K":
     converted_value += 273.15 if to_unit == "K" else -273.15
 
+  # Return the converted temperature value
   return converted_value
 
 # Main program flow
 if __name__ == "__main__":
-  # Get user input for temperature value and units
+  # Continuously prompt the user for input until valid inputs are provided
   while True:
     try:
+      # Prompt the user to enter the temperature value to convert
       value = float(input("Enter temperature value: "))
+      # Prompt the user to enter the starting temperature unit
       from_unit = input("Enter starting unit (C, F, or K): ").upper()
+      # Prompt the user to enter the target temperature unit
       to_unit = input("Enter target unit (C, F, or K): ").upper()
       break
     except ValueError:
+      # Display an error message if the input is invalid and prompt again
       print("Invalid input. Please enter a numerical value and valid unit (C, F, or K).")
 
-  # Convert temperature and display result
+  # Call the conversion function with user inputs and store the result
   converted_value = convert_temperature(value, from_unit, to_unit)
-  print(f"{value:.2f} {from_unit} is equivalent to {converted_value:.2f} {to_unit}.") 
+  
+  # Display the conversion result to the user
+  print(f"{value:.2f} {from_unit} is equivalent to {converted_value:.2f} {to_unit}.")
