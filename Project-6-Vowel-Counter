@@ -1,0 +1,33 @@
+# Define all the vowels, both lowercase and uppercase
+vowels = "aeiouAEIOU"
+
+# Define the string to be analyzed for vowel count
+string = "Hello, World!"
+
+# Initialize a variable to store the vowel count, starting at 0
+vowel_count = 0
+
+# Iterate through each character in the string using a for loop
+for char in string:
+    # Check if the current character is in the list of vowels
+    if char in vowels:
+        # If it is a vowel, increment the vowel_count by 1
+        vowel_count += 1
+
+# Print the final vowel count
+# The f-string allows embedding the variable values directly in the string
+print(f"The number of vowels in the string '{string}' is: {vowel_count}")
+
+# Detailed Explanation:
+# 1. We define a string 'vowels' that contains all the vowels (a, e, i, o, u) in both
+#    lowercase and uppercase. This will be used to check against each character in the input string.
+# 2. We define the string variable 'string' that holds the sentence we want to analyze. In this case,
+#    the string is "Hello, World!".
+# 3. We initialize 'vowel_count' to 0. This variable will keep track of the number of vowels found in
+#    the string as we iterate through it.
+# 4. We use a for loop to go through each character in the 'string' one by one.
+# 5. Inside the for loop, we use an if statement to check if the current character (char) is found in the
+#    'vowels' string. The 'in' operator checks for membership, returning True if the character is a vowel.
+# 6. If the character is a vowel, we increase the 'vowel_count' by 1 using the += operator.
+# 7. After the loop has processed all characters in the string, we print the result using an f-string to
+#    format the output message, displaying the original string and the total number of vowels it contains.
