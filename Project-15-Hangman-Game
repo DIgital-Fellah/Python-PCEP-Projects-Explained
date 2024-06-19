@@ -1,0 +1,70 @@
+# Import the random module to use for selecting a random word from a list
+import random
+
+# Define a list of words that the game can choose from
+words = ["python", "programming", "computer", "science", "machine"]
+
+# Randomly select a word from the list and convert it to uppercase for consistency
+secret_word = random.choice(words).upper()
+
+# Initialize a list to keep track of wrong guesses
+wrong_guesses = []
+
+# Set the number of tries the player has
+tries = 6
+
+# Create a list to represent the current state of the guessed word, initially filled with underscores
+word_display = ["_"] * len(secret_word)
+
+# Print a welcome message to the player
+print("Welcome to Hangman!")
+
+# Main game loop: continues until the player either runs out of tries or guesses the word
+while tries > 0 and "_" in word_display:
+    # Print the number of wrong guesses remaining
+    print("\nYou have", tries, "wrong guesses left.")
+
+    # Print the current state of the word, showing guessed letters and underscores
+    print(" ".join(word_display))
+
+    # Prompt the player to enter a guess (either a single letter or the whole word)
+    guess = input("Guess a letter or the whole word: ").upper()
+
+    # Check if the player's guess is a single letter
+    if len(guess) == 1 and guess.isalpha():
+        # If the letter has already been guessed, inform the player
+        if guess in wrong_guesses:
+            print("You already guessed that letter.")
+        # If the guessed letter is not in the secret word, it is a wrong guess
+        elif guess not in secret_word:
+            # Add the wrong guess to the list and decrement the number of tries left
+            wrong_guesses.append(guess)
+            tries -= 1
+            print("Wrong guess. Try again.")
+        else:
+            # If the guessed letter is in the secret word, update the word display
+            for i in range(len(secret_word)):
+                if secret_word[i] == guess:
+                    word_display[i] = guess
+            print("Good guess!")
+    # Check if the player's guess is the whole word
+    elif len(guess) == len(secret_word) and guess.isalpha():
+        # If the guess matches the secret word, the player wins
+        if guess == secret_word:
+            word_display = list(secret_word)  # Update the word display to show the full word
+            print("You guessed the word! You win!")
+        else:
+            # If the guess is incorrect, decrement the number of tries left
+            tries -= 1
+            print("Wrong guess. Try again.")
+    else:
+        # If the guess is invalid (not a single letter or the whole word), prompt the player again
+        print("Invalid guess. Please enter a single letter or the whole word.")
+
+# Check if the player has won or lost after exiting the main game loop
+if "_" not in word_display:
+    # If there are no underscores left, the player has guessed the word
+    print("\nYou won! The word was", secret_word)
+else:
+    # If the player has run out of tries, they lose and the word is revealed
+    print("\nYou ran out of guesses. The word was", secret_word)
