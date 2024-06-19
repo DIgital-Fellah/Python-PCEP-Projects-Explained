@@ -1,0 +1,49 @@
+# Function to convert temperature based on user selection
+def convert_temperature(value, from_unit, to_unit):
+  """
+  This function converts temperature between Celsius, Fahrenheit, and Kelvin scales.
+
+  Args:
+      value: The temperature value to be converted (float).
+      from_unit: The starting temperature unit (str, "C", "F", or "K").
+      to_unit: The target temperature unit (str, "C", "F", or "K").
+
+  Returns:
+      The converted temperature value (float).
+  """
+
+  # Conversion factors and formulas
+  conversion_factors = {
+      "C": {"F": 9/5, "K": 1},
+      "F": {"C": 5/9, "K": (5/9) + 32},
+      "K": {"C": -273.15, "F": -273.15 * (9/5) + 32}
+  }
+
+  # Error handling for invalid units
+  if from_unit not in conversion_factors or to_unit not in conversion_factors[from_unit]:
+    raise ValueError("Invalid temperature unit(s). Please use 'C', 'F', or 'K'.")
+
+  # Perform conversion based on user input
+  converted_value = value * conversion_factors[from_unit][to_unit]
+
+  # Add or subtract the base value for Kelvin conversions
+  if to_unit == "K" or from_unit == "K":
+    converted_value += 273.15 if to_unit == "K" else -273.15
+
+  return converted_value
+
+# Main program flow
+if __name__ == "__main__":
+  # Get user input for temperature value and units
+  while True:
+    try:
+      value = float(input("Enter temperature value: "))
+      from_unit = input("Enter starting unit (C, F, or K): ").upper()
+      to_unit = input("Enter target unit (C, F, or K): ").upper()
+      break
+    except ValueError:
+      print("Invalid input. Please enter a numerical value and valid unit (C, F, or K).")
+
+  # Convert temperature and display result
+  converted_value = convert_temperature(value, from_unit, to_unit)
+  print(f"{value:.2f} {from_unit} is equivalent to {converted_value:.2f} {to_unit}.") 
