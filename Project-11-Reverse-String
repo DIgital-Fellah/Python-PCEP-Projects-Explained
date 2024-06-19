@@ -1,0 +1,30 @@
+def reverse_string(text):
+  """Reverses a given string.
+
+  Args:
+      text: The string to reverse.
+
+  Returns:
+      The reversed string.
+  """
+  # Initialize an empty string to store the reversed characters.
+  reversed_text = ""
+
+  # Iterate over the characters of the input string in reverse order.
+  # The slicing operation text[::-1] creates a new string that is the reverse of the input string.
+  for char in text[::-1]:
+    # Append each character from the reversed input string to the reversed_text string.
+    reversed_text += char
+
+  # Return the final reversed string.
+  return reversed_text
+
+# Example usage:
+# Define a string variable with the text "Hello, world!".
+original_text = "Hello, world!"
+# Call the reverse_string function with the original_text as the argument,
+# and store the result in the reversed_text variable.
+reversed_text = reverse_string(original_text)
+# Print the reversed text to the console. 
+# The expected output is "!dlrow ,olleH".
+print(reversed_text)  # Output: "!dlrow ,olleH"
