@@ -1,0 +1,33 @@
+import random  # Import the random module to generate a random choice for the computer
+
+# Define possible choices for the game in a list
+choices = ["Rock", "Paper", "Scissors"]
+
+# Get user's choice
+user_choice = input("Choose Rock, Paper, or Scissors: ").capitalize()  # Take input from the user and capitalize the first letter
+
+# Validate user input
+if user_choice not in choices:
+    # If the user input is not one of the valid choices, print an error message and exit the program
+    print("Invalid choice. Please choose Rock, Paper, or Scissors.")
+    exit()  # Exit the program
+
+# Generate computer's random choice
+computer_choice = random.choice(choices)  # Use the random.choice method to select a random choice from the list
+
+# Print user and computer choices
+print(f"\nYou chose: {user_choice}")  # Display the user's choice
+print(f"Computer chose: {computer_choice}")  # Display the computer's choice
+
+# Determine the winner using logic
+if user_choice == computer_choice:
+    # If both choices are the same, it's a tie
+    print("\nIt's a tie!")
+elif (user_choice == "Rock" and computer_choice == "Scissors") or (
+    user_choice == "Paper" and computer_choice == "Rock"
+) or (user_choice == "Scissors" and computer_choice == "Paper"):
+    # If the user wins according to the rules of the game, print "You win!"
+    print("\nYou win!")
+else:
+    # If none of the above conditions are met, the computer wins
+    print("\nComputer wins!")
