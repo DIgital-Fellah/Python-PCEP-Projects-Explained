@@ -1,0 +1,71 @@
+# This Python program performs basic arithmetic operations
+
+# Define functions for each operation
+
+# The 'add' function takes two arguments (x and y) and returns their sum.
+def add(x, y):
+  """Adds two numbers and returns the sum."""
+  return x + y
+
+# The 'subtract' function takes two arguments (x and y) and returns their difference.
+def subtract(x, y):
+  """Subtracts two numbers and returns the difference."""
+  return x - y
+
+# The 'multiply' function takes two arguments (x and y) and returns their product.
+def multiply(x, y):
+  """Multiplies two numbers and returns the product."""
+  return x * y
+
+# The 'divide' function takes two arguments (x and y) and returns their quotient.
+# It also handles division by zero by checking if y is zero and printing an error message if so.
+def divide(x, y):
+  """Divides two numbers and returns the quotient, handling division by zero."""
+  if y == 0:
+    # If y is zero, print an error message and return None.
+    print("Error: Cannot divide by zero.")
+    return None
+  else:
+    # If y is not zero, perform the division and return the result.
+    return x / y
+
+# Get user input for the first number.
+# The 'input' function takes a string prompt and returns the user's input as a string.
+# The 'float' function converts the input string to a floating-point number.
+num1 = float(input("Enter the first number: "))
+
+# Get user input for the second number.
+num2 = float(input("Enter the second number: "))
+
+# Get user input for the operation.
+# The 'input' function returns the user's input as a string.
+operator = input("Choose an operation (+, -, *, /): ")
+
+# Perform the calculation based on the chosen operator.
+# The 'if' statement checks the value of 'operator' and calls the corresponding function.
+
+# If the operator is '+', call the 'add' function.
+if operator == "+":
+  result = add(num1, num2)
+
+# If the operator is '-', call the 'subtract' function.
+elif operator == "-":
+  result = subtract(num1, num2)
+
+# If the operator is '*', call the 'multiply' function.
+elif operator == "*":
+  result = multiply(num1, num2)
+
+# If the operator is '/', call the 'divide' function.
+elif operator == "/":
+  result = divide(num1, num2)
+
+# If the operator is none of the above, print an error message and set result to None.
+else:
+  print("Error: Invalid operator.")
+  result = None
+
+# Print the result if there's no error.
+# The 'if' statement checks if 'result' is not None.
+if result is not None:
+  print("Result:", result)
