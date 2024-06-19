@@ -1,0 +1,40 @@
+def is_leap_year(year):
+    """
+    This function checks if a given year is a leap year.
+
+    Args:
+        year: An integer representing the year to be checked.
+
+    Returns:
+        True if the year is a leap year, False otherwise.
+    """
+    # Check if the year is divisible by 4
+    if year % 4 == 0:
+        # If the year is divisible by 4, check if it's also divisible by 100 but not by 400
+        if year % 100 == 0 and year % 400 != 0:
+            return False  # If the year is divisible by 100 but not by 400, it is not a leap year
+        else:
+            return True  # If the year is not divisible by 100, or it is divisible by 400, it is a leap year
+    else:
+        return False  # If the year is not divisible by 4, it is not a leap year
+
+# Get user input for the year
+year = int(input("Enter a year: "))
+
+# Check if the year is a leap year and print the result
+if is_leap_year(year):
+    print(year, "is a leap year")
+else:
+    print(year, "is not a leap year")
+
+# Detailed explanation of each part:
+# 1. Define a function named is_leap_year that takes one argument, year.
+# 2. Inside the function, check if the year is divisible by 4 using the modulus operator (%).
+# 3. If the year is divisible by 4, check the next condition: whether the year is divisible by 100 and not divisible by 400.
+# 4. If the year meets both these conditions (divisible by 100 and not by 400), it is not a leap year.
+# 5. Otherwise, if the year is divisible by 4 and either not divisible by 100 or divisible by 400, it is a leap year.
+# 6. If the year is not divisible by 4, it is not a leap year.
+# 7. Outside the function, prompt the user to enter a year.
+# 8. Convert the user's input from a string to an integer.
+# 9. Call the is_leap_year function with the user's input and check if the year is a leap year.
+# 10. Print the appropriate message based on whether the year is a leap year or not.
