@@ -1,0 +1,62 @@
+# This program solves quadratic equations of the form ax^2 + bx + c = 0
+# It takes the coefficients a, b, and c as input from the user
+
+def solve_quadratic(a, b, c):
+    """
+    This function solves a quadratic equation and returns the roots.
+
+    Args:
+        a: Coefficient of the x^2 term.
+        b: Coefficient of the x term.
+        c: Constant term.
+
+    Returns:
+        A tuple containing the two roots of the equation, 
+        or a tuple with complex roots if there are no real number solutions.
+    """
+
+    # Calculate the discriminant (b^2 - 4ac)
+    discriminant = b**2 - 4 * a * c
+
+    # Check for the nature of roots based on the discriminant
+    if discriminant > 0:
+        # Two distinct real roots
+        root1 = (-b + discriminant**0.5) / (2 * a)  # Calculate the first root
+        root2 = (-b - discriminant**0.5) / (2 * a)  # Calculate the second root
+        return root1, root2
+    elif discriminant == 0:
+        # One repeated real root
+        root = -b / (2 * a)  # Calculate the repeated root
+        return root, root
+    else:
+        # Complex roots (discriminant is negative)
+        real_part = -b / (2 * a)  # Real part of the complex roots
+        imaginary_part = (abs(discriminant)**0.5) / (2 * a)  # Imaginary part of the complex roots
+        # Return a tuple of complex roots
+        return (real_part, complex(0, imaginary_part)), (real_part, complex(0, -imaginary_part))
+
+# Get input coefficients from the user
+# 'a' is the coefficient of x^2
+a = float(input("Enter coefficient a: "))
+# 'b' is the coefficient of x
+b = float(input("Enter coefficient b: "))
+# 'c' is the constant term
+c = float(input("Enter coefficient c: "))
+
+# Solve the equation and handle different cases
+roots = solve_quadratic(a, b, c)
+
+# Check if roots are complex
+if isinstance(roots[0], tuple):
+    # If roots are complex, print them in the format a + bi
+    print("The equation has complex roots:")
+    print(f"x1 = {roots[0][0]} + {roots[0][1].imag}i")
+    print(f"x2 = {roots[1][0]} - {roots[1][1].imag}i")
+else:
+    # If roots are real, print them
+    print("The roots of the equation are:")
+    print(f"x1 = {roots[0]}")
+    print(f"x2 = {roots[1]}")
+
+# The code is complete
+# OVER
