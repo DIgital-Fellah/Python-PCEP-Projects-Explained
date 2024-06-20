@@ -1,0 +1,79 @@
+# Define a dictionary to store Morse code mappings for letters and numbers
+MORSE_CODE = {
+    'A': '.-', 'B': '-...',
+    'C': '-.-.', 'D': '-..', 'E': '.',
+    'F': '..-.', 'G': '--.', 'H': '....',
+    'I': '..', 'J': '.---', 'K': '-.-',
+    'L': '.-..', 'M': '--', 'N': '-.',
+    'O': '---', 'P': '.--.', 'Q': '--.-',
+    'R': '.-.', 'S': '...', 'T': '-',
+    'U': '..-', 'V': '...-', 'W': '.--',
+    'X': '-..-', 'Y': '-.--', 'Z': '--..',
+    '1': '.----', '2': '..---', '3': '...--',
+    '4': '....-', '5': '.....', '6': '-....',
+    '7': '--...', '8': '---..', '9': '----.',
+    '0': '-----',
+    ' ': '/'  # Space is represented by a forward slash
+}
+
+# Function to translate text to Morse code
+def text_to_morse(text):
+    text = text.upper()  # Convert text to uppercase for case-insensitive translation
+    morse_code = ""  # Initialize an empty string for the Morse code
+    for char in text:
+        if char in MORSE_CODE:
+            # Append the corresponding Morse code for each character, followed by a space
+            morse_code += MORSE_CODE[char] + " "
+        else:
+            # If character is not in the Morse code dictionary, add a space
+            morse_code += " "
+    return morse_code.strip()  # Remove any trailing space and return the Morse code
+
+# Function to translate Morse code to text
+def morse_to_text(morse_code):
+    morse_code = morse_code.strip()  # Remove leading/trailing spaces from the input Morse code
+    words = morse_code.split("/")  # Split on forward slash to separate Morse code into words
+    text = ""  # Initialize an empty string for the text
+    for word in words:
+        letters = word.split()  # Split on spaces to separate Morse code into characters
+        for letter in letters:
+            if letter in MORSE_CODE.values():
+                # Find the key (letter) associated with the Morse code value
+                text += list(MORSE_CODE.keys())[list(MORSE_CODE.values()).index(letter)]
+            else:
+                # If Morse code sequence is unknown, add a placeholder (#)
+                text += "#"
+        text += " "  # Add space between words
+    return text.strip()  # Remove trailing space and return the text
+
+# Get user input for translation mode (text to Morse or Morse to text)
+while True:
+    # Prompt user to choose a translation mode or quit
+    mode = input("Enter 'T' to translate text to Morse, 'M' to translate Morse to text, or 'Q' to quit: ").upper()
+    if mode in ('T', 'M', 'Q'):
+        # Break loop if input is valid (T, M, or Q)
+        break
+    else:
+        # Inform user of invalid input and prompt again
+        print("Invalid input. Please enter 'T', 'M', or 'Q'.")
+
+# Handle user input based on chosen mode
+if mode == 'T':
+    # If mode is 'T', prompt user for text input
+    text = input("Enter text to translate: ")
+    # Translate text to Morse code
+    morse_code = text_to_morse(text)
+    # Display the resulting Morse code
+    print("Morse Code:", morse_code)
+elif mode == 'M':
+    # If mode is 'M', prompt user for Morse code input
+    morse_code = input("Enter Morse code to translate: ")
+    # Translate Morse code to text
+    text = morse_to_text(morse_code)
+    # Display the resulting text
+    print("Text:", text)
+else:
+    # If mode is 'Q', exit the program
+    print("Exiting program.") 
+
+OVER
