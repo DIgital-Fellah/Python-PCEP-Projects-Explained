@@ -1,0 +1,83 @@
+import matplotlib.pyplot as plt
+import time
+
+# Sample data (you can change this to your desired list)
+data = [64, 34, 25, 12, 22, 11, 90]
+
+def swap(data, i, j):
+    """
+    Swaps two elements in the data list.
+
+    Args:
+        data: The list of data to be sorted.
+        i: The index of the first element.
+        j: The index of the second element.
+    """
+    # Swapping the elements at index i and j
+    data[i], data[j] = data[j], data[i]
+
+def bubble_sort(data):
+    """
+    Sorts a list of data using the bubble sort algorithm.
+
+    Args:
+        data: The list of data to be sorted.
+
+    Returns:
+        The sorted list.
+    """
+    n = len(data)  # Get the number of elements in the data list
+    for i in range(n - 1):  # Loop over each element in the list
+        swapped = False  # To track if any elements were swapped in this pass
+        for j in range(0, n - i - 1):  # Loop to compare adjacent elements
+            if data[j] > data[j + 1]:  # Compare elements
+                swap(data, j, j + 1)  # Swap if the current element is greater
+                swapped = True  # Set swapped to True as swapping has occurred
+        if not swapped:  # If no elements were swapped in the inner loop
+            break  # Break the outer loop, the list is already sorted
+
+def visualize_sort(data):
+    """
+    Visualizes the bubble sort algorithm by plotting the data at each step.
+
+    Args:
+        data: The list of data to be sorted.
+    """
+    fig, ax = plt.subplots()  # Create a figure and a set of subplots
+    x = range(len(data))  # Generate a range object for the x-axis
+    bars = ax.bar(x, data, color='skyblue')  # Create a bar plot
+
+    def update_fig(data):
+        """
+        Updates the figure with new data values.
+
+        Args:
+            data: The updated list of data.
+        """
+        for i, b in enumerate(bars):  # Update the height of each bar
+            b.set_height(data[i])
+        fig.canvas.draw()  # Redraw the canvas
+        plt.pause(0.1)  # Pause to allow the plot to update
+        plt.cla()  # Clear the current axes
+
+    # Perform bubble sort and update the plot at each step
+    for i in range(len(data) - 1):
+        for j in range(0, len(data) - i - 1):
+            if data[j] > data[j + 1]:
+                swap(data, j, j + 1)  # Swap if the current element is greater
+                update_fig(data.copy())  # Update the figure with the new data
+
+    # Final plot after sorting is complete
+    plt.bar(x, data, color='skyblue')  # Plot the final sorted data
+    plt.title("Bubble Sort Visualization")  # Set the title of the plot
+    plt.xlabel("Index")  # Set the label for the x-axis
+    plt.ylabel("Value")  # Set the label for the y-axis
+    plt.show()  # Display the plot
+
+if __name__ == "__main__":
+    # Sort the data using bubble sort
+    bubble_sort(data)
+    # Visualize the sorting process
+    visualize_sort(data.copy())
+    # Print the sorted data
+    print("Sorted data:", data)
