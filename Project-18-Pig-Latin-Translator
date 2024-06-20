@@ -1,0 +1,56 @@
+def translate_to_pig_latin(word):
+    """
+    This function translates a word into Pig Latin.
+
+    Args:
+        word: The word to translate.
+
+    Returns:
+        The word translated into Pig Latin.
+    """
+    
+    # Define a string containing all vowels, both lowercase and uppercase
+    vowels = "aeiouAEIOU"
+    
+    # Check if the first letter of the word is a vowel
+    if word[0] in vowels:
+        # If the word starts with a vowel, append "way" to the end of the word
+        return word + "way"
+    else:
+        # If the word starts with a consonant, find the index of the first vowel in the word
+        first_vowel_index = next((i for i, char in enumerate(word) if char in vowels), None)
+        
+        # If there are no vowels in the word (e.g., in the case of consonant clusters)
+        if first_vowel_index is None:
+            # Append "ay" to the entire word
+            return word + "ay"
+        
+        # Split the word into two parts: before the first vowel and from the first vowel onwards
+        consonant_part = word[:first_vowel_index]
+        vowel_part = word[first_vowel_index:]
+        
+        # Move the consonant part to the end and add "ay"
+        return vowel_part + consonant_part + "ay"
+
+# Example usage
+# Define a sentence to translate into Pig Latin
+sentence = "This is a test sentence."
+
+# Translate each word in the sentence into Pig Latin and join them with spaces
+# `sentence.split()` splits the sentence into individual words
+# `[translate_to_pig_latin(word) for word in sentence.split()]` translates each word
+# `" ".join(...)` joins the translated words back into a single string with spaces
+pig_latin_sentence = " ".join([translate_to_pig_latin(word) for word in sentence.split()])
+
+# Print the translated Pig Latin sentence
+print(pig_latin_sentence)
+
+"""
+Explanation of Pig Latin rules:
+1. If a word starts with a vowel (a, e, i, o, u), add "way" to the end of the word.
+   For example, "apple" becomes "appleway".
+2. If a word starts with a consonant, move all consonants before the first vowel to the end of the word and add "ay".
+   For example, "banana" becomes "ananabay".
+3. If a word has no vowels, just add "ay" to the end of the word.
+   For example, "rhythm" becomes "rhythmay".
+"""
