@@ -1,0 +1,41 @@
+import random  # Import the random module to generate random numbers
+
+def flip_coin(flips=1):
+  """
+  Simulates the flipping of one or more coins and displays the results.
+
+  Args:
+      flips: The number of coins to flip (default: 1).
+
+  Returns:
+      A list containing the results of the coin flips, where "H" represents heads and "T" represents tails.
+  """
+
+  # Initialize an empty list to store the results of each coin flip
+  results = []
+  
+  # Loop to perform the coin flip the specified number of times
+  for _ in range(flips):
+    # Generate a random number between 0 and 1
+    # If the number is less than 0.5, it will be considered as heads ("H")
+    if random.random() < 0.5:
+      result = "H"  # Heads
+    else:
+      result = "T"  # Tails
+    # Append the result of the current coin flip to the results list
+    results.append(result)
+  
+  # Check if only one coin was flipped
+  if flips == 1:
+    # Print the result of a single coin flip
+    print(f"Coin flip result: {result}")
+  else:
+    # Print the results of multiple coin flips
+    # Join the results list into a single string separated by commas
+    print(f"{flips} coin flips: {', '.join(results)}")
+
+# Example usage
+# Call the function to flip one coin
+flip_coin()  # Flip one coin
+# Call the function to flip three coins
+flip_coin(3)  # Flip three coins
