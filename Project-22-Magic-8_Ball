@@ -1,0 +1,46 @@
+# Import the random module to generate random responses
+import random
+
+# Define a list of possible Magic 8-Ball responses
+responses = [
+    "It is certain.",
+    "It is decidedly so.",
+    "Without a doubt.",
+    "Yes - definitely.",
+    "You may rely on it.",
+    "As I see it, yes.",
+    "Most likely.",
+    "Outlook good.",
+    "Signs point to yes.",
+    "Reply hazy, try again.",
+    "Ask again later.",
+    "Better not tell you now.",
+    "Cannot predict now.",
+    "Concentrate and ask again.",
+    "Don't count on it.",
+    "My reply is no.",
+    "Outlook not so good.",
+    "Very doubtful.",
+]
+
+# Get the user's question
+# The input() function waits for the user to type something and hit enter
+question = input("Shake the magic 8-ball and ask your question: ")
+
+# Check if the question ends with a question mark
+# If it doesn't, we add a question mark at the end
+if not question.endswith("?"):
+    question += "?"
+
+# Print a message indicating the 8-ball is shaking
+# This is to simulate the shaking of the magic 8-ball toy
+print("Shaking the magic 8-ball...")
+
+# Generate a random number to select a response
+# random.randint(a, b) generates a random integer N such that a <= N <= b
+# Here, we get a random index between 0 and the last index of the responses list
+random_index = random.randint(0, len(responses) - 1)
+
+# Print the chosen response from the responses list
+# We use the random_index to select a random response from the list
+print(responses[random_index]) 
