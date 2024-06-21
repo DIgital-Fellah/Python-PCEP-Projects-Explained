@@ -1,0 +1,50 @@
+def decimal_to_binary(decimal_number):
+    """
+    This function converts a decimal number to its binary equivalent.
+
+    Args:
+        decimal_number: An integer representing the decimal number to convert.
+
+    Returns:
+        A string representing the binary equivalent of the decimal number.
+    """
+
+    # Check if the input is a valid integer
+    if not isinstance(decimal_number, int):
+        # If the input is not an integer, raise an error
+        raise ValueError("Input must be an integer")
+
+    # Initialize an empty string to store the binary digits
+    binary_string = ""
+
+    # Handle the special case when the input number is zero
+    if decimal_number == 0:
+        # The binary representation of 0 is "0"
+        return "0"
+
+    # Process of converting decimal to binary
+    # Keep dividing the number by 2 until it becomes 0
+    while decimal_number > 0:
+        # Calculate the remainder when the number is divided by 2 (this will be 0 or 1)
+        remainder = decimal_number % 2
+        
+        # Convert the remainder to a string and add it to the front of the binary_string
+        # (because we are computing the binary number from least significant to most significant bit)
+        binary_string = str(remainder) + binary_string
+        
+        # Update the decimal number by performing integer division by 2
+        # (This discards the remainder)
+        decimal_number //= 2
+
+    # Return the constructed binary string
+    return binary_string
+
+# Example usage
+# Prompt the user to enter a decimal number
+decimal_value = int(input("Enter a decimal number: "))
+
+# Convert the entered decimal number to its binary equivalent
+binary_value = decimal_to_binary(decimal_value)
+
+# Print the result in a formatted string
+print(f"{decimal_value} in binary is {binary_value}")
