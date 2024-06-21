@@ -1,0 +1,47 @@
+def generate_acronym(phrase):
+    """
+    This function generates an acronym from a given phrase or sentence.
+    
+    Args:
+        phrase: The phrase or sentence to generate the acronym from.
+        
+    Returns:
+        The acronym of the phrase or sentence.
+    """
+
+    # Convert the entire phrase to uppercase to ensure consistency in letter cases.
+    phrase = phrase.upper()
+    
+    # Initialize an empty string to store characters of the acronym.
+    acronym = ""
+    
+    # Iterate over each character in the phrase.
+    for char in phrase:
+        # Check if the character is an alphabetic letter.
+        if char.isalpha():
+            # Append alphabetic characters to the acronym string.
+            acronym += char
+    
+    # At this point, 'acronym' contains all alphabetic characters from the phrase without spaces or punctuation.
+    
+    # Split the acronym string into words.
+    # Since the original code had a logic error here, we'll first split the original phrase into words.
+    words = phrase.split()
+    
+    # Initialize an empty string to build the final acronym.
+    final_acronym = ""
+    
+    # Iterate over each word in the list of words.
+    for word in words:
+        # Add the first letter of each word to the final acronym.
+        final_acronym += word[0]
+    
+    # Return the final acronym.
+    return final_acronym
+
+# Example usage
+phrase = "Natural Language Processing"
+# Call the function with the example phrase and store the result in 'acronym'.
+acronym = generate_acronym(phrase)
+# Print the result. It should be "NLP".
+print(f"The acronym for '{phrase}' is '{acronym}'.") 
