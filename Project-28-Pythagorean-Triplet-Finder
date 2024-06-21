@@ -1,0 +1,51 @@
+def find_pythagorean_triplets(lower_limit, upper_limit):
+    """
+    This function finds Pythagorean triplets (a, b, c) where a^2 + b^2 = c^2 within a given range.
+
+    Args:
+        lower_limit: The lower bound of the range (inclusive).
+        upper_limit: The upper bound of the range (inclusive).
+    """
+
+    # Loop over all possible values for 'a' from lower_limit to upper_limit.
+    for a in range(lower_limit, upper_limit + 1):
+        """
+        Iterate through possible values for side 'a' within the range.
+        'a' starts from lower_limit and goes up to upper_limit (inclusive).
+        """
+
+        # Loop over all possible values for 'b' from a+1 to upper_limit.
+        for b in range(a + 1, upper_limit + 1):
+            """
+            Iterate through possible values for side 'b' starting from a + 1.
+            This ensures that 'b' is always greater than 'a' and avoids duplicate triplets.
+            'b' goes up to upper_limit (inclusive).
+            """
+
+            # Calculate the value of 'c' using the Pythagorean theorem.
+            c = (a**2 + b**2)**0.5  # 'c' is the square root of the sum of squares of 'a' and 'b'.
+
+            # Check if 'c' is an integer and is within the upper_limit.
+            if c.is_integer() and c <= upper_limit:
+                """
+                If 'c' is an integer and less than or equal to upper_limit,
+                it means (a, b, c) forms a valid Pythagorean triplet.
+                """
+
+                # Print the found Pythagorean triplet.
+                print(f"Pythagorean triplet found: a = {a}, b = {b}, c = {int(c)}")
+
+if __name__ == "__main__":
+    """
+    This block of code only executes when the script is run directly,
+    not when imported as a module.
+    """
+
+    # Prompt the user to enter the lower limit of the range.
+    lower_limit = int(input("Enter the lower limit of the range: "))
+
+    # Prompt the user to enter the upper limit of the range.
+    upper_limit = int(input("Enter the upper limit of the range: "))
+
+    # Call the function to find Pythagorean triplets within the given range.
+    find_pythagorean_triplets(lower_limit, upper_limit)
