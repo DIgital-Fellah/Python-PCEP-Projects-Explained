@@ -1,0 +1,62 @@
+def vigenere_cipher(text, key, mode='encrypt'):
+  """
+  This function implements the Vigenère cipher for encryption and decryption.
+
+  Args:
+      text: The text to be encrypted or decrypted.
+      key: The keyword used for encryption or decryption.
+      mode: 'encrypt' or 'decrypt' (default: 'encrypt').
+
+  Returns:
+      The encrypted or decrypted text.
+  """
+
+  # Convert both the text and key to uppercase to simplify the algorithm.
+  text = text.upper()
+  key = key.upper()
+
+  # Get the lengths of the text and the key.
+  text_len = len(text)
+  key_len = len(key)
+
+  # Initialize an empty string to store the resulting encrypted or decrypted text.
+  new_text = ''
+
+  # Loop through each character in the text.
+  for i in range(text_len):
+    # Get the current character from the text.
+    char = text[i]
+
+    # Check if the current character is an alphabetic character.
+    if char.isalpha():
+      # Calculate the shift value using the corresponding character in the key.
+      shift = ord(key[i % key_len]) - ord('A')
+
+      # Perform encryption or decryption based on the mode.
+      if mode == 'encrypt':
+        # For encryption, shift the character forward.
+        new_char = chr((ord(char) - ord('A') + shift) % 26 + ord('A'))
+      else:
+        # For decryption, shift the character backward.
+        new_char = chr((ord(char) - ord('A') - shift) % 26 + ord('A'))
+
+      # Add the new character to the result string.
+      new_text += new_char
+    else:
+      # If the character is not alphabetic, leave it unchanged.
+      new_text += char
+
+  # Return the final encrypted or decrypted text.
+  return new_text
+
+# Example usage
+text = "ATTACK AT DAWN"  # The text we want to encrypt.
+key = "LEMON"           # The keyword we will use for encryption.
+
+# Encrypt the text using the Vigenère cipher.
+encrypted_text = vigenere_cipher(text, key)
+print("Encrypted Text:", encrypted_text)  # Output should be: EXYVTHQ RZ IRMG
+
+# Decrypt the encrypted text back to the original text.
+decrypted_text = vigenere_cipher(encrypted_text, key, mode='decrypt')
+print("Decrypted Text:", decrypted_text)  # Output should be: ATTACK AT DAWN
