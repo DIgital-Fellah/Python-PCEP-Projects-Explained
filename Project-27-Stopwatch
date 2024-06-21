@@ -1,0 +1,79 @@
+# Import the time module to access time-related functions
+import time
+
+# Define variables to manage the stopwatch state
+running = False  # Flag to track if the stopwatch is running
+start_time = None  # Variable to store the start time
+elapsed_time = 0  # Variable to store the elapsed time
+
+def start_timer():
+    """Starts the stopwatch."""
+    global running, start_time
+
+    # Check if the stopwatch is already running
+    if running:
+        return  # If it's already running, do nothing and return
+
+    # Set the running flag to True and record the current time as start_time
+    running = True
+    start_time = time.time()  # Record the start time using the current time
+
+def stop_timer():
+    """Stops the stopwatch."""
+    global running, elapsed_time
+
+    # Check if the stopwatch is already stopped
+    if not running:
+        return  # If it's already stopped, do nothing and return
+
+    # Calculate the elapsed time by subtracting the start time from the current time
+    elapsed_time = time.time() - start_time
+    running = False  # Set the running flag to False indicating the stopwatch is stopped
+
+def reset_timer():
+    """Resets the stopwatch to zero."""
+    global running, start_time, elapsed_time
+
+    # Stop the timer if it is running
+    stop_timer()
+
+    # Reset all variables to their initial states
+    running = False
+    start_time = None
+    elapsed_time = 0
+
+def get_elapsed_time():
+    """Returns the elapsed time in a formatted string (minutes:seconds.milliseconds)"""
+    global elapsed_time
+
+    # Calculate total seconds and milliseconds from the elapsed time
+    total_seconds = elapsed_time
+
+    # Get the minutes and the remaining seconds
+    minutes = int(total_seconds // 60)  # Get the integer part of total_seconds divided by 60
+    seconds = int(total_seconds % 60)  # Get the remainder of total_seconds divided by 60
+    milliseconds = int((total_seconds - seconds) * 1000)  # Get the milliseconds part
+
+    # Format the time string as "minutes:seconds.milliseconds"
+    return f"{minutes:02d}:{seconds:02d}.{milliseconds:03d}"
+
+# Infinite loop to keep the stopwatch running until the user decides to quit
+while True:
+    # Print the current elapsed time
+    print(get_elapsed_time())
+
+    # Get user input for actions: start, stop, reset, or quit
+    user_input = input("Enter 'start', 'stop', 'reset', or 'q' to quit: ").lower()
+
+    # Handle user input by calling the appropriate function
+    if user_input == "start":
+        start_timer()  # Start the timer
+    elif user_input == "stop":
+        stop_timer()  # Stop the timer
+    elif user_input == "reset":
+        reset_timer()  # Reset the timer
+    elif user_input == "q":
+        break  # Exit the loop and quit the program
+    else:
+        # Inform the user if the input is invalid
+        print("Invalid input. Please try again.")
