@@ -1,0 +1,48 @@
+# This program generates a multiplication table for a given range of numbers.
+
+# Define a function to handle the multiplication table generation
+def multiplication_table(start_num, end_num):
+  """
+  This function generates a multiplication table for a given range of numbers.
+
+  Args:
+      start_num: The starting number for the multiplication table.
+      end_num: The ending number for the multiplication table.
+  """
+  
+  # Print the table header
+  # This loop prints the top row of numbers (the header of the table).
+  # It starts with an empty space for alignment and then prints the numbers from start_num to end_num.
+  print("   |", end="")
+  for num in range(start_num, end_num + 1):
+    print(f"{num:4}", end="")  # Print each number with a width of 4 spaces for proper alignment.
+  print()  # Move to the next line after printing the header.
+
+  # Print the dividing line
+  # This line separates the header from the rest of the table.
+  print("---|", end="")
+  for _ in range(start_num, end_num + 1):
+    print("----", end="")  # Print dashes for each column to match the width of the numbers.
+  print()  # Move to the next line after printing the divider.
+
+  # Generate the multiplication table using nested loops
+  # The outer loop iterates over the rows, representing the first factor in the multiplication.
+  for i in range(start_num, end_num + 1):
+    print(f"{i:3}|", end="")  # Print the row label (first factor) with a width of 3 spaces, followed by a vertical bar.
+    
+    # The inner loop iterates over the columns, representing the second factor in the multiplication.
+    for j in range(start_num, end_num + 1):
+      product = i * j  # Calculate the product of the two factors.
+      print(f"{product:4}", end="")  # Print the product with a width of 4 spaces for proper alignment.
+    print()  # Move to the next line after printing all products in the current row.
+
+# Get the starting and ending numbers from the user as integers
+# Prompt the user to enter the starting number and convert it to an integer.
+start_num = int(input("Enter the starting number for the table (positive integer): "))
+
+# Prompt the user to enter the ending number and convert it to an integer.
+end_num = int(input("Enter the ending number for the table (positive integer): "))
+
+# Call the multiplication_table function to generate the table
+# Pass the starting and ending numbers provided by the user to the function.
+multiplication_table(start_num, end_num) 
